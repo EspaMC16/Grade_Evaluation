@@ -1,0 +1,46 @@
+
+{% extends "grade_evaluation_system/base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+</head>
+<body>
+
+  {% block content %}
+
+  <div class="center-content">
+
+
+      <h1>Please Log In Your Admin Account</h1>
+    
+      <form method="post" action="{% url 'users:login_admin' %}">
+        {% csrf_token %}
+    
+        <div class="form-container">
+          <img src="{% static 'img/ESSU_Logo_New_protected_1959_50.png' %}">
+          
+          {% if messages %}
+            <div class="error-message">
+              {% for message in messages %}
+                {{ message }}
+              {% endfor %}
+            </div>
+          {% endif %}
+    
+          <input type="text" class="input-form" placeholder="Username" id="username" name="username" required>
+          <input type="password" class="input-form" placeholder="Password" id="password" name="password" required>
+    
+          <button class="login-button" name="submit" type="submit">Log in</button>
+        </div>
+      </form>
+    </div>
+    
+
+  {% endblock content %}
+
+</body>
+</html>
