@@ -1,0 +1,50 @@
+
+{% extends "grade_evaluation_system/base.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+</head>
+<body>
+
+  {% block content %}
+
+  <div class="center-content">
+
+
+    <h1>Please Sign Up Your Student Account</h1>
+
+    <form method="post" action="{% url 'users:sign_up' %}">
+      {% csrf_token %}
+
+
+      <div class="form-container">
+        <img src="{% static 'img/ESSU_Logo_New_protected_1959_50.png' %}">
+
+        {% if messages %}
+          <div class="error-message">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <input type="text" class="input-form" placeholder="Username" id="username" name="username" required>
+        <input type="text" class="input-form" placeholder="Email" id="email" name="email" required>
+        <input type="password" class="input-form" placeholder="Password" id="password" name="password" required>
+        <input type="password" class="input-form" placeholder="Confirm Password" id="password2" name="password2" required>
+        <button class="signup-button" name="submit" type="submit">Sign Up</button>
+      </div>
+      
+    </form>
+
+    <i>Already have an account? <a href="{% url 'users:login' %}">Log In</a></i>
+  </div>
+
+  {% endblock content %}
+
+</body>
+</html> 
