@@ -1,0 +1,77 @@
+{% extends "grade_evaluation_system/base.html" %}
+
+
+{% block content %}
+
+
+<div class="center-content">
+    
+    <h1>Grade Evaluation</h1>
+
+    <ul class="search-container">
+        <li class="search-content">
+            <!-- Search Bar -->
+            <form role="search" method=POST action="{% url 'grade_evaluation_system:search_grade' %}">
+                {% csrf_token %}
+                <div class="search">
+                    <input class="search-input" type="text" placeholder="Search.."  name="searched">
+                    <button class="search-button" 
+                    type="submit">Search</button>
+                </div>
+            </form>
+        </li>
+        <li class="search-content">
+            <ul class="dropdown-ul">
+                <!-- Dropdown Menu -->
+                <select onchange="window.location.href=this.value;" class="dropdown-button">
+                    <option value="{% url 'grade_evaluation_system:show_1st_semester' %}">1st Semester</option>
+                    <option value="{% url 'grade_evaluation_system:grade_evaluation' %}">Semester</option>
+                    <option value="{% url 'grade_evaluation_system:show_2nd_semester' %}">2nd Semester</option>
+                </select>
+            </ul>
+        </li>
+    </ul>
+
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Student Number</th>
+                <th>Subject</th>
+                <th>Course</th>
+                <th>Semester</th>
+                <th>Mid Terms</th>
+                <th>Finals</th>
+                <th>Average</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for grade in grades%}
+                <tr class="active-row">
+                    <td>{{ grade.student_number }}</td>
+                    <td>{{ grade.subject }}</td>
+                    <td>{{ grade.course }}</td>
+                    <td>{{ grade.semester }}</td>
+                    <td>{{ grade.mid_terms_grade }}</td>
+                    <td>{{ grade.finals_grade }}</td>
+                    <td>{{ grade.average }}</td>
+                    <td>{{ grade.remarks }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td>No data available.</td>
+                    <td>No data available.</td>
+                    <td>No data available.</td>
+                    <td>No data available.</td>
+                    <td>No data available.</td>
+                    <td>No data available.</td>
+                    <td>No data available.</td>
+                    <td>No data available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content %}
+    
