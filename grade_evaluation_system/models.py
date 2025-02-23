@@ -3,6 +3,7 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
+# Subjects
 class Subject(models.Model):
     """Subjects Information"""
     subject_name = models.CharField(max_length=100)
@@ -16,7 +17,7 @@ class Subject(models.Model):
         verbose_name_plural = "Subjects"
 
     
-
+# Informations of instructor
 class Instructor(models.Model):
     """Instructor Information."""
     instructor_id_number = models.CharField(max_length=10)
@@ -34,7 +35,7 @@ class Instructor(models.Model):
         verbose_name = "Instructor"
         verbose_name_plural = "Instructors"
 
-
+# Course
 class Course(models.Model):
     course = models.CharField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
@@ -47,7 +48,7 @@ class Course(models.Model):
         verbose_name = "Course"
         verbose_name_plural = "Courses"
     
-
+# Grades
 class Grade(models.Model):
     """Students grades evaluation"""
     student_number = models.CharField(max_length=10)
